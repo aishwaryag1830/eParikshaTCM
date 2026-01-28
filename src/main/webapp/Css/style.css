@@ -1,0 +1,865 @@
+/**
+	Common Style Sheet for ePariksha
+	Author: Praveer, Prashant,Ritesh,Asha,Mritunjay,Sherin
+	Created Date: 17-05-12
+**/
+
+body{
+	margin:0px;
+	padding:0px;
+	background-color:#cccccc;
+	
+}
+#mainBody
+{
+	width:850px; 
+	border:1px solid #FFFFFF;	
+	background-color:#ffffff;
+	margin: 0 auto 0 auto;
+	
+	
+	
+}
+#topArea
+{
+	width:100%;
+	
+}
+#bannerFooter
+{
+	width:800px; 
+	
+}
+#workArea
+{
+	width:800px; 
+	min-height: 350px;
+	margin:2px 0px 0px 0px;
+	font: 9pt Arial,tahoma, georgia,Helvetica, sans-serif;
+	text-align: left;
+	color:#737373;
+}
+
+a
+{	
+	font: 10pt Arial,tahoma, georgia,Helvetica, sans-serif;
+	color:#1C89FF;
+	text-decoration: none;
+}
+a:HOVER
+{	
+	font: 10pt Arial,tahoma, georgia,Helvetica, sans-serif;
+	color:#B73333;
+	text-decoration: underline;
+}
+input
+{
+	border: 1px solid #B7B7B7;
+	height:15px;
+	font-size:10pt;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+
+#topArea ul
+{
+	list-style:none;
+	display: block;
+	margin: 0 0 0 0;
+	font-size: 0;
+	float: right;
+	padding:0px;
+	
+}
+
+#topArea ul li {
+	padding: 2px 5px 0px 4px;
+	display: block;
+	font: 12px Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-style:italic;
+	float: left;	
+}
+
+
+
+
+
+
+
+pre {
+	margin:0px;
+	padding:0px;
+}
+td {
+	font-family: Arial,Verdana,Helvetica, sans-serif;
+	font-size:12px;
+}
+.welcome {
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+	color:#FF9999;
+	font-size:11px;
+	text-decoration:none;
+}
+.welcome a { color: #FFFFFF; text-decoration:none; font-weight:bold;}
+.welcome a:hover { color:#39C2FF; text-decoration:none;}
+.category { color:#737373;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	line-height:20px;
+	font-weight:normal;
+	background-image:url(images/index_73.gif);
+	background-repeat:no-repeat;
+	background-position:left;
+	padding-left:13px;
+}
+.category a{ color:#737373; text-decoration:none; font-weight: normal; font-size:11px; }
+.category a:hover{ color:#A70505; text-decoration:none;}
+.text {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#737373;
+	text-align:justify;
+	font-weight:normal;
+}
+.text a { color:#A70505; text-decoration:none; font-size:10px; font-weight:bold; }
+.text a:hover{ color:#39C2FF; text-decoration:none; }
+.footer {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	color:#878787;
+	text-align:center;
+	padding-bottom:7px;
+	padding-top:19px;
+}
+.footer a {	color:#878787; text-decoration:none;}
+.footer a:hover { color:#A70505; text-decoration:none; }
+.copyright {
+	font-size:9px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	color:#878787;
+	padding-bottom:10px;
+}
+.heading {
+	font-weight:bold;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:15px;
+	color:#1B1B1B;
+}
+
+
+
+
+
+/************************Element Styles Begins*******************/
+
+label.pageheader
+{
+	
+	font: 12pt Comic Sans MS,Arial,Verdana ;
+	color:#AE0E10;
+	font-style: normal;
+	margin:0px 0px 0px 0px;
+	
+	
+}
+label.sideheader
+{
+	
+	font: 10pt Comic Sans MS,Arial,Verdana ;
+	color:#AE0E10;
+	font-style: normal;
+	font-weight:bold;
+	margin:0px 0px 0px 0px;
+	
+	
+}
+
+#table_resultPage
+{
+	background-color: white;
+	width: 100%;
+	color: #3399FF;
+	text-align: center;
+}
+
+.button
+{
+	min-width: 72px;
+	height: 22px;
+	color: white;
+	/*background: url(images/button6.png) no-repeat 0 0 ;*/
+	background-color:#BA3C3C;
+	border-style: none;
+	border-width: 0;
+	padding-bottom:2px;
+	font-family: Arial, Verdana;
+	font-weight: bold;
+	font-size: 12px;
+	cursor: pointer;
+	text-align: center;
+}
+
+.button:HOVER {
+	/*background: url(images/button7.png);*/
+	color: #ffffff;
+	background-color:#1C89FF;/*#007FFF;*/
+	
+}
+
+.inputText_No_border {
+	width: 160px;
+	vertical-align: middle;
+	text-decoration: inherit;
+	vertical-align: middle;
+	cursor: auto;
+	text-align: left;
+	background-color: transparent;
+	border-style: none;
+	color: #2F4F4F;
+}
+
+textarea 
+{
+	overflow:auto;
+}
+
+.no_exam_schedule {
+	font-size: 28px;
+	margin-top: 120px;
+	margin-bottom: 120px;
+	text-align: center;
+}
+
+#time 
+{
+	width: 90px;
+	color: #3FAFFF;
+	border-style: none;
+	background-color: transparent;
+	font: 11pt Arial,Verdana, tahoma, georgia, Helvetica, sans-serif;
+	font-weight: bold;
+	cursor: default;
+}
+
+#time:HOVER 
+{
+	color: red;
+}
+
+.ques_link
+{
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #A83B3E;
+	font-size: 12pt;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.ques_link_module_less_100
+{
+	padding-left: 6px;
+	padding-right: 6px;
+	color: #A83B3E;
+	font-size: 12pt;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.ques_link_module_equal_100 
+{
+	padding-left: 5px;
+	padding-right: 5px;
+	color: #A83B3E;
+	font-size: 12pt;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.ques_link_module_greater_100
+{
+	padding-left: 2px;
+	padding-right: 2px;
+	color: #A83B3E;
+	font-size: 12pt;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#ques_text {
+	text-align: justify;
+	height: 250px;
+	overflow: auto;
+	padding-left: 20px;
+	width: 95%;
+	font: 11pt Arial, Verdana, tahoma, georgia, Helvetica, sans-serif;
+}
+
+.ques_opt {
+	padding-right: 10px;
+	padding-left: 20px;
+	text-align: justify;
+	font: 11pt Arial, Verdana, tahoma, georgia, Helvetica, sans-serif;
+	
+}
+
+#subject_message {
+	color: #50A8D0;
+	font: 18px Verdana, tahoma, georgia, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: underline;
+}
+
+
+
+.today {
+	COLOR: #50A8D0;
+	FONT-FAMILY: sans-serif;
+	FONT-SIZE: 10pt;
+	FONT-WEIGHT: bold
+}
+
+.days {
+	COLOR: #50A8D0;
+	FONT-FAMILY: sans-serif;
+	FONT-SIZE: 10pt;
+	FONT-WEIGHT: bold;
+	TEXT-ALIGN: center
+}
+
+.dates {
+	COLOR: black;
+	FONT-FAMILY: sans-serif;
+	FONT-SIZE: 10pt
+}
+
+.inputText {
+	width: 140px;
+	vertical-align: middle;
+	text-decoration: inherit;
+	font-size: 14px;
+	text-align: left;
+	vertical-align: middle;
+	cursor: auto;
+}
+
+.table_header
+{
+	color: #000000;
+	font: 12px Arial,Verdana,tahoma,georgia,, Helvetica, sans-serif;
+	text-align:center;
+	font-weight:bold;
+	background-color: #C1E4FE;
+}
+.page_link
+{
+ 	font-size: 16px;
+ 	padding-left:5px;
+ 	padding-right: 5px;
+ 	color: #A83B3E;
+ 	text-decoration: none;
+ 	cursor: pointer;
+ 	
+}
+.simple_row 
+{
+	font-weight: bold; 
+	padding-left: 2px;
+	border-left-color: white;
+	border-left-style: solid;
+	border-left-width: 1px;
+	
+}
+
+.odd_row {
+	padding-left: 5px;
+	background-color: #C1E4FE;
+}
+
+.even_row {
+	padding-left: 5px;
+	background-color: #EDF8FE;
+}
+
+
+.schedule_msg
+{
+	font-size:20;
+	background: url(images/msg_back.png) repeat 0 0 #FEF09F;
+}
+#cancelRow
+{
+	display:none;
+	float: right;
+	text-align: right;
+}
+#cancelRow a
+{
+	padding-right: 5px;
+	color: #50A8D0;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+#printRow
+{
+	padding-bottom: 20px;
+	padding-top: 20px;
+	
+}
+
+
+.ques_msg
+{
+	padding-left: 28px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	color: #50A8D0;
+	font: 14px Verdana, tahoma, georgia, Arial, Helvetica, sans-serif;
+	text-align: left;
+	font-weight: bold;
+}
+.schedule_msg
+{
+	font-size:18px;
+	padding-right:4px;
+	padding-left:4px;
+	background: url(images/msg_backNew.png) repeat-x 0 0 #FEF09F;
+}
+/********Prashant Style Starts**********/
+
+fieldset.fieldsetStyle 
+{      
+	width:750px;
+	
+	margin:10px 0px 0px 15px ;
+	border:1px solid #E0DFE3;
+	border-radius:15px 15px 15px 15px;
+	-moz-border-radius:5px;     
+	-webkit-border-radius: 7px; 
+}
+fieldset.fieldsetPass
+{      
+	width:350px;
+	margin:0px 0px 0px 15px ;
+	border:1px solid #E0DFE3;
+	border-radius:15px 15px 15px 15px;
+	-moz-border-radius:5px;     
+	-webkit-border-radius: 7px; 
+}
+
+select
+{
+	font: 10pt Arial,Verdana Helvetica, sans-serif;
+	height:20px;
+	
+}
+#div_message_operations
+{
+ height:20px;
+ color:red;
+}
+div.message_directions
+{
+ font-weight: regular; 
+  font-size: 15pt;
+  color:#B27C7C;
+  line-height: 14pt; 
+  font-family: Tahoma; 
+  font-variant: normal;
+  font-style: normal;
+ 
+}
+
+label.lblstyle
+{
+	font-weight: bold; 
+	font-size: 9pt;
+	color:#7A7A7A;
+	font-family:Arial,Tahoma,Verdana ;
+	
+	
+}
+.transparent
+{
+	background-color:transparent;
+    border:none;
+}
+.nonTransparent
+{
+	background-color:'#FFFFFF';
+	border-color:#92C2D4;
+	border-style:solid;
+	border-width:1pt; /*1pt for cross browsers*/
+}
+
+
+textarea.transparent
+{
+	background-color:transparent;
+    border:0pt;
+    color:#969696; /*don't use ' ' for color*/
+    font-family:arial;
+    font-size:11pt;
+    overflow: auto;
+    overflow-x: hidden;
+   
+}
+textarea.nonTransparent
+{
+	background-color:'#FFFFFF';
+	border-color:#92C2D4;
+	border-style:solid;
+	border-width:1pt; /*1pt for cross browsers*/
+	color:#000000; /*don't use ' ' for color*/
+    font-family:arial;
+    font-size:11pt;
+   	overflow: auto;
+    overflow-x: hidden;
+}
+input[type="button"][disabled]
+{
+  font-style:normal;
+  color:black;
+  cursor:default;
+}
+input[type="button"][disabled]:hover
+{
+  color:black;
+  background-color:#1C89FF;
+  cursor:default;
+}
+input [type="text"][disabled]
+{
+	color:black;
+	
+}
+
+.tblstyle
+{
+	border-width: 1pt;
+	border-style: solid;
+	border-color: #B7B7B7;
+	
+}
+.tdblue{
+	background-color:#F2F2F2; /*#EAEAEA;*/	
+	padding-left: 5px;
+}
+.tdlightblue
+{
+	background-color: #FBF9F5;	
+	padding-left: 5px;
+	
+}	
+a img
+{
+	text-decoration: none;
+	border: none;
+	
+}
+
+
+/**************************************Div for profile container starts********************/
+#divContainerQuestions
+{
+ width:100%;
+ height:600px;
+ font-family:arial;
+ font-size:10pt;
+
+}
+/**************************************Div for profile container ends********************/
+
+/**************************************Div for left_menu starts********************/
+#divQuestionLinks
+{
+ display:block;
+ float:left;	
+ width:25%;
+  height:99%;
+ font-family:arial;
+ font-size:10pt;
+ border-width:1px;
+ margin:0px 0px 0px 0px;
+ border:1px solid #B8DFFE;
+ overflow:fixed;
+
+}
+/**************************************Div for left_menu ends********************/
+
+/**************************************Div for profile_content starts********************/
+#divQuestionContents
+{
+ display:block;
+ float:right;	
+ width:75%;
+ height:99%;
+ font-family:arial;
+ font-size:10pt;
+ border:1px solid #B8DFFE;
+ text-align:justify;
+ padding:3px;
+}
+
+td.tdStudentDetailsHeader
+{
+	width:150px;
+	height:20px;
+	padding-left:5px;
+	background-color:#F2F2F2;
+}
+td.tdStudentDetailsData
+{
+	width:250px;
+	height:20px;
+	padding-left:5px;
+	background-color: #FBF9F5;	
+	
+}
+td.tdExamDetailsHeader
+{
+	width:100px;
+	height:20px;
+	padding-left:5px;
+	background-color:#F2F2F2;
+}
+td.tdExamDetailsData
+{
+	width:300px;
+	height:20px;
+	padding-left:5px;
+	background-color: #FBF9F5;	
+	
+}
+
+/**************************************Div for profile_content ends********************/
+/********Prashant Style ends**********/
+
+
+
+/*********************************** Mritunjay Starts*********************************************/
+/**************************************For Course & module starts************************/
+/*********************************** Mritunjay Starts*********************************************/
+/**************************************For Course & module starts************************/
+#divCourseList {
+	height: 352px;
+	overflow-y: auto;
+	font-weight: bold;
+	font-size: 9pt;
+	font-family: Arial, Tahoma, Verdana;
+	color: #7A7A7A;/*#165989;*/
+	background-color: #FBF9F5;
+	overflow-x: none;
+}
+
+.divSmallHeader {
+	border-bottom: 0.1em solid #B7B7B7;
+	background-color: #DDD;/*#6b95b4;*/
+	color: black;
+	height: 18px;
+	font-weight: bold;
+	padding-top: 2px;
+	font-size: 12px;
+	width: 616px;
+	padding-left: 3px;
+}
+
+#divAllModule {
+	height: 139px;
+	overflow-y: auto;
+	overflow-x: none;
+	margin-left: 0px;
+	width: 617px;
+	}
+
+.roll {
+	height: 18px;
+	background-color: #AE373A;/*#45a7dc;#C1E4FE;*/
+	border: 0.1em solid #B7B7B7;
+	color: white;
+	padding-top: 3px;
+}
+
+.rollLarge {
+	height: 18px;
+	background-color: #C1E4FE;;
+	border: 0.1em solid #88c1f4;
+	color: black;
+	padding-top: 3px;
+}
+
+#divModule {
+	width: 620px;
+	height: 160px;
+	border: 0.1em solid #B7B7B7;/*#E5DECB;*/
+	background-color: #FbF9F5;
+}
+
+#HeaderCourse {
+	height: 26px;
+	font-weight: bold;
+	font-size: 16px;
+	padding-left: 340px;
+	padding-bottom: 3px;
+}
+#divAddUser
+{
+	background-color: #FbF9F5;
+}
+#divCourses {
+	float: left;
+	border: 0.1em solid #B7B7B7;
+	width: 140px;
+	margin-left: 8px;
+}
+
+.courseHeader {
+	border-bottom: 0.1em solid #B7B7B7;
+	background-color: #DDD;
+	color: #7A7A7A;
+	height: 18px;
+	padding-top: 2px;
+	margin-top:1px;
+	margin-right:1px;
+}
+
+#test {
+	float: right;
+	font-weight: bold;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.title {
+	color: #6b95b4;
+}
+
+.removeBorder {
+	border: none;
+	background-color: #ffffff;
+	margin-left: 1px;
+}
+
+.activeBorder {
+	border: 1px solid #B7B7B7;
+	background-color: #ffffff;
+}
+
+.CourseData {
+	height: 16px;
+	cursor: pointer;
+	padding-top: 4px;
+	padding-left: 2px;
+}
+
+#lblDisplayModuleMessage {
+	color: red;
+}
+.tblstyleStudent
+{
+  border-top : 1px solid #B7B7B7;
+  border-left : 1px solid #B7B7B7;
+  border-right : 1px solid #B7B7B7;
+	
+}
+/**************************************For Course & module ends************************/
+/*********************************** Mritunjay ends*********************************************/
+
+
+/*********************************** Sherin Style Starts*********************************************/
+.headerTitle  /*Style to be used to welcome the username with italics style*/
+{
+	font-style: italic;
+    font-weight: bold;
+    height: 30px;
+    padding-top: 5px;
+    text-align: left;
+    width: 774px;
+}
+
+
+
+table.tblResult {
+	font: 12px/24px Arial,Verdana Helvetica, sans-serif;
+	width: 620px;
+	border-style: solid;
+	border-color: #B7B7B7;
+	border-width: 1pt;
+	border-bottom-color: #B7B7B7;
+	}
+	
+tr.odd td {
+	border-top: 1px solid #FFFFFF;
+	border-bottom: 1px solid #FFFFFF;
+	background:#FBF9F5;
+	color: #333333;
+	}
+	
+	
+tr.even td {
+	border-top: 1px solid #FFFFFF;
+	border-bottom: 1px solid #FFFFFF;
+	background: #F2F2F2;
+	color: #333333;
+	}
+	
+
+.main_body{
+	font: Arial;
+	color: black;
+	}
+	
+	
+#imgstyle{
+	vertical-align: top;
+	width: 69px;
+
+}
+
+.tableborder{
+	border-color: #99DDFF;
+    border-style: solid;
+    border-width: 1pt;
+}
+
+#idCourseNameBanner{
+	color: black;
+}
+
+#fontcolorblack{
+color: black;	
+}
+
+#tblheader{
+	background: none repeat scroll 0 0 #DDDDDD;
+    border: 2px none;
+    color: #7A7A7A;
+    text-align: center;
+    height: 20px;
+    
+}
+
+/*********************************** Sherin Style Ends********************************************/
+
+/************************Element Styles Ends*******************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+

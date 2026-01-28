@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ResultsDetails" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="NoPages" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="37e1996e-d48e-45c0-b91a-e6e5f824dafe">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="164"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ePariksha PostgreSql Adapter"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="pageHeader" mode="Opaque" hTextAlign="Left" hImageAlign="Left"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#E0DFE3" hTextAlign="Center" hImageAlign="Center" vTextAlign="Middle" vImageAlign="Middle" fontName="Arial" fontSize="10" isStrikeThrough="false" pdfFontName="Arial.ttf" isPdfEmbedded="true">
+		<box leftPadding="4">
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFFFFF" hTextAlign="Left" hImageAlign="Left" vTextAlign="Middle" vImageAlign="Middle" isBlankWhenNull="true" fontName="Arial" fontSize="10" isBold="true" pdfFontName="ArialBD.ttf" isPdfEmbedded="true">
+		<box leftPadding="4">
+			<pen lineWidth="0.0" lineColor="#000000"/>
+			<topPen lineWidth="0.0"/>
+			<leftPen lineWidth="0.0"/>
+			<bottomPen lineWidth="0.0"/>
+			<rightPen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF" hTextAlign="Left" hImageAlign="Left" vTextAlign="Middle" vImageAlign="Middle" isBlankWhenNull="true" fontName="Arial" fontSize="10" isBold="false" pdfFontName="Arial.ttf" isPdfEmbedded="true">
+		<box leftPadding="4"/>
+	</style>
+	<style name="SummaryHeader" mode="Opaque" fill="Solid" markup="none" isBlankWhenNull="false" fontName="Arial" fontSize="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="ArialBD.ttf" isPdfEmbedded="true"/>
+	<style name="HeaderFooter" mode="Transparent" fontName="Arial" fontSize="9" isItalic="true" pdfFontName="ArialI.ttf" isPdfEmbedded="true">
+		<box leftPadding="2"/>
+	</style>
+	<style name="ReportTitleHeader" mode="Opaque" backcolor="#E0DFE3" hTextAlign="Left" hImageAlign="Left" fontName="Arial" fontSize="14" pdfFontName="Arial.ttf" isPdfEmbedded="true">
+		<box leftPadding="2"/>
+	</style>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\trial\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="plsql">
+		<![CDATA[SELECT  result_Stud_PRN,
+		(SELECT course_Short_Name
+		 FROM ePariksha_Courses
+		 WHERE ePariksha_Courses.course_Id = finalResultsTable.result_course_Id
+		) AS courseShortName,
+		(SELECT CONCAT(stud_F_Name, ' ', stud_M_Name, ' ', stud_L_Name) AS candidateFullName
+		 FROM ePariksha_Student_Login
+		 WHERE ePariksha_Student_Login.stud_PRN = finalResultsTable.result_Stud_PRN
+		) AS candidateName,
+		result_Marks,
+		result_Percentage,
+		TO_CHAR(result_Exam_Date, 'DD-MM-YYYY') AS examDate,
+		(SELECT module_Id
+		 FROM ePariksha_Modules
+		 WHERE ePariksha_Modules.module_Id = finalResultsTable.result_module_Id
+		) AS moduleId,
+		(SELECT module_Name
+		 FROM ePariksha_Modules
+		 WHERE ePariksha_Modules.module_Id = finalResultsTable.result_module_Id
+		) AS moduleName,
+		(SELECT COUNT(result_stud_PRN)
+		 FROM ePariksha_Results tempResults
+		 WHERE result_percentage >= 40.00
+		 AND tempResults.result_module_id = finalResultsTable.result_module_id
+		 AND TO_CHAR(tempResults.result_Exam_Date, 'DD-MM-YYYY') = TO_CHAR(finalResultsTable.result_Exam_Date, 'DD-MM-YYYY')
+		) AS totalPassedCandidates,
+		(SELECT COUNT(*)
+		 FROM (SELECT DISTINCT result_module_Id,
+			   		  TO_CHAR(result_Exam_Date, 'DD-MM-YYYY') AS dateResults
+			  		  FROM ePariksha_Results
+			  		 ) AS tempTable
+		) AS totalExamsConducted
+FROM ePariksha_Results finalResultsTable
+ORDER BY result_Exam_Date, result_Module_Id]]>
+	</queryString>
+	<field name="result_Stud_PRN" class="java.lang.String"/>
+	<field name="courseShortName" class="java.lang.String"/>
+	<field name="candidateName" class="java.lang.String"/>
+	<field name="result_Marks" class="java.lang.Integer"/>
+	<field name="result_Percentage" class="java.math.BigDecimal"/>
+	<field name="examDate" class="java.lang.String"/>
+	<field name="moduleId" class="java.lang.Long"/>
+	<field name="moduleName" class="java.lang.String"/>
+	<field name="totalPassedCandidates" class="java.lang.Integer"/>
+	<field name="totalExamsConducted" class="java.lang.Integer"/>
+	<variable name="serialNumber" class="java.lang.Integer" resetType="Group" resetGroup="ModuleIDGroup" calculation="Count">
+		<variableExpression><![CDATA[$V{serialNumber}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<variable name="totalCandidatesEachExam" class="java.lang.Integer" resetType="Group" resetGroup="ModuleIDGroup" calculation="Count">
+		<variableExpression><![CDATA[$V{COLUMN_COUNT}]]></variableExpression>
+	</variable>
+	<variable name="totalFailedCandidatesEachExam" class="java.lang.Integer" resetType="None">
+		<variableExpression><![CDATA[$V{totalCandidatesEachExam}-$F{totalPassedCandidates}]]></variableExpression>
+	</variable>
+	<variable name="totalExams" class="java.lang.Integer" incrementType="Group" incrementGroup="ExamDateGroup" calculation="Count">
+		<variableExpression><![CDATA[$V{COLUMN_COUNT}]]></variableExpression>
+	</variable>
+	<group name="ExamDateGroup" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{examDate}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement style="table_TD" x="85" y="0" width="75" height="20" uuid="97241f93-bbae-4cb6-b312-3817e9b5510a"/>
+					<textFieldExpression><![CDATA[$F{examDate}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="table_CH" x="10" y="0" width="63" height="20" uuid="a5002b58-9626-4826-9f3d-60d2c9d8b506"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Exam Date:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="ModuleIDGroup" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{moduleId}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField textAdjust="StretchHeight">
+					<reportElement style="table_TD" x="85" y="0" width="349" height="20" uuid="9270fb7f-1dd4-4989-9cb3-270701034c82"/>
+					<textFieldExpression><![CDATA[$F{moduleName}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="table_CH" x="10" y="0" width="75" height="20" uuid="2865612c-eb24-48f8-9dce-c21e2180591c"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Module Name:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="109">
+				<textField>
+					<reportElement style="table_TD" x="133" y="20" width="55" height="20" uuid="398ab97f-38fc-43f0-b019-057d9956885a"/>
+					<textFieldExpression><![CDATA[$V{totalCandidatesEachExam}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="table_TD" x="133" y="40" width="58" height="20" uuid="f48f2240-fbc9-438c-9390-e9519389a0d6"/>
+					<textFieldExpression><![CDATA[$F{totalPassedCandidates}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="table_TD" x="133" y="60" width="52" height="20" uuid="809e13d3-e055-4aa5-88c3-ee1c834f86f6"/>
+					<textFieldExpression><![CDATA[$V{totalFailedCandidatesEachExam}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="table_CH" x="0" y="20" width="90" height="20" uuid="28d82075-3e16-4b5d-9b55-7754fae0f980"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total Candidates:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_CH" x="0" y="40" width="133" height="20" uuid="3d1d8cc3-edfc-42d9-b4f8-3fe451f1d114"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total Passed Candidates:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_CH" x="0" y="60" width="126" height="20" uuid="c69df5b9-6d1b-4331-9715-55be0b1e6fb0"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total Failed Candidates:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_CH" x="0" y="80" width="160" height="20" uuid="c1e980b7-9048-4811-96f1-428a0ed395c7"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Passing Percentage:         40%	]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="180" splitType="Immediate">
+			<staticText>
+				<reportElement style="table_CH" x="3" y="160" width="136" height="20" uuid="46a4f43f-bb69-4ea1-aafa-4ef3f783ead9"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement style="table_TD" x="39" y="160" width="100" height="20" uuid="2649e5a3-08a2-4ff8-841e-4283130c4fbf"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="ReportTitleHeader" x="4" y="131" width="302" height="18" backcolor="#CCCCCC" uuid="7fab3600-8510-4e80-88f7-5dfbee92dd8a"/>
+				<textElement>
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Result Details]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="90" width="146" height="21" uuid="9add2bae-1e64-47ea-97f2-4d39c2451b60"/>
+				<textElement>
+					<font fontName="Arial" size="16" isBold="true" pdfFontName="Arial.ttf" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ePariksha Reports]]></text>
+			</staticText>
+			<image>
+				<reportElement x="305" y="12" width="221" height="76" uuid="0ad5aebf-724f-4d30-a1af-04c6ecbc3504"/>
+				<imageExpression><![CDATA["eParikshaLogo.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="25" splitType="Stretch">
+			<printWhenExpression><![CDATA[$V{PAGE_NUMBER}.intValue()==1?Boolean.FALSE:Boolean.TRUE]]></printWhenExpression>
+			<staticText>
+				<reportElement x="8" y="2" width="77" height="12" forecolor="#CCCCCC" uuid="de59ff77-0512-4ebf-838f-4af4cfa640d8"/>
+				<textElement>
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Result Details]]></text>
+			</staticText>
+			<line>
+				<reportElement x="6" y="14" width="767" height="1" forecolor="#CCCCCC" uuid="011b7f97-fba4-489f-8886-cb81e0e994af"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement key="sno" style="table_TH" x="3" y="4" width="36" height="17" uuid="4ec3f84d-efdb-4981-99c4-ec7f648ffe6e"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[S.no.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TH" x="39" y="4" width="97" height="17" uuid="7f9c3dad-a51b-4cdb-b6e4-5c7e5965b3d1"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Candidate Roll No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TH" x="516" y="4" width="68" height="17" uuid="a123ee73-5c9a-4a00-ac98-c1a2f28de13e"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Percentage(%)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TH" x="468" y="4" width="48" height="17" uuid="88cca18d-3628-4cb2-999c-3a1489326cb8"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Marks]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TH" x="135" y="4" width="191" height="17" uuid="5171b89c-91cb-49cb-a312-b0ad78746130"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Candidate Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TH" x="426" y="4" width="42" height="17" uuid="1539d711-1032-45ce-a93b-c5d5f9139e54"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Result]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TH" x="326" y="4" width="100" height="17" uuid="627a442e-c8de-4a32-bb11-a1e93bcc8fd9"/>
+				<text><![CDATA[Course]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField textAdjust="StretchHeight">
+				<reportElement style="table_TD" x="3" y="2" width="36" height="20" uuid="7f1e6019-11c0-4850-8a99-3644949a8877"/>
+				<textFieldExpression><![CDATA[new Integer($V{serialNumber})]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement style="table_TD" x="39" y="0" width="95" height="20" uuid="41bb5fe7-d98f-4f1a-98c6-4fb1bf3dddf6"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{result_Stud_PRN}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement style="table_TD" x="136" y="0" width="191" height="20" uuid="6d34a7fc-8436-43de-99d2-1ea600dcbe23"/>
+				<textFieldExpression><![CDATA[$F{candidateName}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement style="table_TD" x="468" y="0" width="51" height="20" uuid="f231dce1-8877-414d-9efc-7b8487d77452"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{result_Marks}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement style="table_TD" x="519" y="0" width="65" height="20" uuid="8933fc1d-6dba-4476-8c56-fac2713abdbc"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{result_Percentage}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement style="table_TD" x="427" y="0" width="41" height="20" uuid="358afffd-b854-488f-99ad-12655f740833"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[( $F{result_Percentage}.intValue()<40 ? "Failed"  : "Passed" )]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement style="table_TD" x="327" y="2" width="100" height="20" uuid="fa93ed20-9e89-434c-b5a2-81ad949cef15"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{courseShortName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="22" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="686" y="10" width="56" height="17" forecolor="#CCCCCC" uuid="74d85b1c-1044-4e33-b566-4003de1c6f12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="742" y="10" width="42" height="17" forecolor="#CCCCCC" uuid="eb4dfed9-1800-439d-8a47-e635ca7c307b"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="8" y="7" width="765" height="1" forecolor="#CCCCCC" uuid="d3c9fdc1-785f-4362-892b-01680fccac39"/>
+			</line>
+			<staticText>
+				<reportElement x="10" y="8" width="75" height="12" forecolor="#CCCCCC" uuid="aff54eea-6e00-4ec6-8789-b9f01d9c35c1"/>
+				<textElement>
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Result Details]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="176" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="8" y="22" width="264" height="93" forecolor="#CCCCCC" uuid="67993356-11e7-4130-bd7d-4f158f928f99"/>
+			</rectangle>
+			<staticText>
+				<reportElement style="SummaryHeader" x="21" y="12" width="64" height="20" uuid="1e2e0a53-804b-42ab-984b-39c6e127204e"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true" pdfFontName="ArialBD.ttf" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Summary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="22" y="47" width="78" height="20" uuid="a614b87d-5825-4141-81c3-7b9e86accfff"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Exams:]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="table_TD" x="102" y="47" width="100" height="20" uuid="d0858dd6-1870-43f2-98c8-2758c3f09cec"/>
+				<textFieldExpression><![CDATA[$F{totalExamsConducted}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

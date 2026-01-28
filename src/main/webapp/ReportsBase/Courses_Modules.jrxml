@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Modules" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="NoPages" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="ee7f4871-3d9e-4afe-b75e-6be5f79ff7d1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="124"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ePariksha PostgreSql Adapter"/>
+	<style name="ReportTitleHeader" mode="Opaque" backcolor="#E0DFE3" hTextAlign="Left" hImageAlign="Left" fontName="Arial" fontSize="14" pdfFontName="Arial.ttf" isPdfEmbedded="true">
+		<box leftPadding="2"/>
+	</style>
+	<style name="pageHeader" mode="Opaque" hTextAlign="Left" hImageAlign="Left"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#E0DFE3" hTextAlign="Center" hImageAlign="Center" vTextAlign="Middle" vImageAlign="Middle" fontName="Arial" fontSize="10" pdfFontName="Arial.ttf" isPdfEmbedded="true">
+		<box leftPadding="4">
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFFFFF" hTextAlign="Left" hImageAlign="Left" vTextAlign="Middle" vImageAlign="Middle" isBlankWhenNull="true" fontName="Arial" fontSize="10" isBold="true" pdfFontName="ArialBD.ttf" isPdfEmbedded="true">
+		<box leftPadding="4">
+			<pen lineWidth="0.0" lineColor="#000000"/>
+			<topPen lineWidth="0.0"/>
+			<leftPen lineWidth="0.0"/>
+			<bottomPen lineWidth="0.0"/>
+			<rightPen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF" hTextAlign="Left" hImageAlign="Left" vTextAlign="Middle" vImageAlign="Middle" isBlankWhenNull="true" fontName="Arial" fontSize="10" pdfFontName="Arial.ttf" isPdfEmbedded="true">
+		<box leftPadding="4"/>
+	</style>
+	<style name="SummaryHeader" mode="Opaque" fill="Solid" markup="none" isBlankWhenNull="false" fontName="Arial" fontSize="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Arial.ttf" isPdfEmbedded="true"/>
+	<style name="HeaderFooter" mode="Transparent" fontName="Arial" fontSize="9" isItalic="true" pdfFontName="ArialI.ttf" isPdfEmbedded="true">
+		<box leftPadding="2"/>
+	</style>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\trial\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="plsql">
+		<![CDATA[SELECT  module_Name,
+		(SELECT course_Name FROM ePariksha_Courses WHERE course_id = ePariksha_Modules.module_Course_Id) AS Course,
+		(SELECT COUNT(exam_ques_Id) FROM ePariksha_Exam_Questions WHERE exam_module_Id = ePariksha_Modules.module_Id) AS totalQuestions,
+		(SELECT COUNT(exam_Schedule_Id) FROM ePAriksha_Exam_Schedule WHERE exam_Module_Id = ePariksha_Modules.module_Id) AS totalExamScheduled
+FROM ePariksha_Modules
+ORDER BY module_Id]]>
+	</queryString>
+	<field name="module_Name" class="java.lang.String"/>
+	<field name="Course" class="java.lang.String"/>
+	<field name="totalQuestions" class="java.lang.Integer"/>
+	<field name="totalExamScheduled" class="java.lang.Integer"/>
+	<variable name="serialNumber" class="java.lang.Integer" resetType="Group" resetGroup="Course" calculation="Count">
+		<variableExpression><![CDATA[$V{serialNumber}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<variable name="totalModules" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{COLUMN_COUNT}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="totalModulesEachGroup" class="java.lang.Integer" resetType="Group" resetGroup="Course" calculation="Count">
+		<variableExpression><![CDATA[$V{COLUMN_COUNT}]]></variableExpression>
+	</variable>
+	<variable name="totalCourses" class="java.lang.Integer" incrementType="Group" incrementGroup="Course" calculation="Count">
+		<variableExpression><![CDATA[$V{Course_COUNT}]]></variableExpression>
+	</variable>
+	<group name="Course" isStartNewColumn="true" isStartNewPage="true" keepTogether="true">
+		<groupExpression><![CDATA[$F{Course}]]></groupExpression>
+		<groupHeader>
+			<band height="26">
+				<staticText>
+					<reportElement style="table_CH" x="3" y="4" width="46" height="20" uuid="5f71517a-484a-492f-9d10-0d7e82ed7e3e"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Course:]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="table_TD" x="49" y="4" width="322" height="20" uuid="f57fd38b-5db8-4ced-8007-121d05fb2321"/>
+					<textFieldExpression><![CDATA[$F{Course}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="33">
+				<staticText>
+					<reportElement style="table_CH" x="10" y="10" width="91" height="20" uuid="2d8367d3-fb38-48e7-8734-01cadde0c0d5"/>
+					<text><![CDATA[Total Modules:]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="table_TD" x="85" y="10" width="59" height="20" uuid="f9e68931-b2a5-49aa-bb9a-ca40711f5aaa"/>
+					<textFieldExpression><![CDATA[$V{totalModulesEachGroup}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="180" splitType="Immediate">
+			<staticText>
+				<reportElement style="ReportTitleHeader" x="3" y="130" width="302" height="18" backcolor="#CCCCCC" uuid="374b3e8e-2c1e-430f-bf36-e71640fd3b9a"/>
+				<textElement>
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Courses & Modules Information]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="3" y="160" width="136" height="20" uuid="8b447cb1-fd76-461a-85ed-fbae4fed8b6e"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement style="table_TD" x="39" y="160" width="100" height="20" uuid="8e320f17-fcc5-46b6-b6ea-1cd55669d794"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="361" y="90" width="165" height="21" uuid="b98b874e-4197-4e2b-8a1b-33bb1c1c28dd"/>
+				<textElement>
+					<font fontName="Arial" size="16" isBold="true" pdfFontName="Arial.ttf" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ePariksha Reports]]></text>
+			</staticText>
+			<image>
+				<reportElement x="305" y="12" width="221" height="76" uuid="3371d175-e2fe-4879-8733-a2d791a5f81e"/>
+				<imageExpression><![CDATA["eParikshaLogo.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="25" splitType="Stretch">
+			<printWhenExpression><![CDATA[$V{PAGE_NUMBER}.intValue()==1?Boolean.FALSE:Boolean.TRUE]]></printWhenExpression>
+			<staticText>
+				<reportElement style="HeaderFooter" x="8" y="2" width="136" height="12" forecolor="#CCCCCC" uuid="76db56ed-1510-4e99-ba06-ed6daff9d9f0"/>
+				<textElement>
+					<font fontName="Arial" size="9" isItalic="true" pdfFontName="ArialI.ttf" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Courses & Modules Information]]></text>
+			</staticText>
+			<line>
+				<reportElement x="6" y="14" width="767" height="1" forecolor="#CCCCCC" uuid="5b324345-c85c-4bd1-ae9a-9ec5062438d4"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement key="sno" style="table_TH" x="3" y="4" width="36" height="17" uuid="f37ec523-87db-4198-a92c-afb0f05fe60f"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[S.no.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TH" x="39" y="4" width="370" height="17" uuid="574be66d-3bb4-4c0c-8258-476010e3eafd"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Module Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TH" x="493" y="4" width="109" height="17" uuid="2626b3a8-d21c-45e7-8f47-c65d42974cc7"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Total Exams Scheduled]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TH" x="409" y="4" width="84" height="17" uuid="85dc69fd-0b5c-4764-ac05-9e330eb47a6d"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Total Questions]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField textAdjust="StretchHeight">
+				<reportElement style="table_TD" x="3" y="2" width="36" height="20" uuid="71955bcd-181f-4c9a-910f-d840b833f056"/>
+				<textFieldExpression><![CDATA[new Integer($V{serialNumber})+"."]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement style="table_TD" x="40" y="2" width="367" height="20" uuid="5c7be648-208a-4f2f-87e1-8b5d533cd480"/>
+				<textFieldExpression><![CDATA[$F{module_Name}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement style="table_TD" x="491" y="2" width="96" height="20" uuid="9debb1ec-0415-4e41-ab28-68990b81ac72"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{totalExamScheduled}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement style="table_TD" x="407" y="2" width="84" height="20" uuid="1eb1b3a4-33cc-4b30-b526-9a29be2c111d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{totalQuestions}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="22" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="38" splitType="Stretch">
+			<textField>
+				<reportElement x="686" y="10" width="56" height="17" forecolor="#CCCCCC" uuid="f64a37ed-d2b7-4bf9-b2e0-36b8e60077b1"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="742" y="10" width="42" height="17" forecolor="#CCCCCC" uuid="37ba0a08-8c6e-401b-9bd7-7a343e499296"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="8" y="7" width="765" height="1" forecolor="#CCCCCC" uuid="4a10c0cf-910e-495a-b9df-d0bdac868e7e"/>
+			</line>
+			<staticText>
+				<reportElement style="HeaderFooter" x="10" y="8" width="134" height="12" forecolor="#CCCCCC" uuid="40ae4572-775a-4828-bc24-c52d571544c9"/>
+				<textElement>
+					<font fontName="Arial" size="9" isItalic="true" pdfFontName="ArialI.ttf" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Courses & Modules Information]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="176" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="6" y="21" width="299" height="118" forecolor="#CCCCCC" uuid="72954d72-dd29-4100-aa81-c073c5189c38"/>
+			</rectangle>
+			<staticText>
+				<reportElement style="SummaryHeader" x="21" y="12" width="64" height="20" uuid="7e8b2315-9a74-444c-b364-a0294f082699"/>
+				<textElement>
+					<font size="14" isBold="false" pdfFontName="ArialBD.ttf"/>
+				</textElement>
+				<text><![CDATA[Summary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="28" y="52" width="111" height="20" uuid="060b6b26-1873-42ca-905b-6de193e06fe3"/>
+				<text><![CDATA[Total Courses:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="28" y="82" width="111" height="20" uuid="266ec825-2931-42e5-b603-b03c44175826"/>
+				<text><![CDATA[Total Modules:]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="table_TD" x="140" y="82" width="105" height="20" uuid="99885321-2e17-4d35-8888-d4f00642c8f3"/>
+				<textFieldExpression><![CDATA[$V{totalModules}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="144" y="55" width="100" height="20" uuid="72dc36d2-0eaf-4c00-99fa-a592d3c5c617"/>
+				<textFieldExpression><![CDATA[$V{totalCourses}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

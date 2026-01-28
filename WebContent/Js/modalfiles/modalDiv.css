@@ -1,0 +1,565 @@
+
+/***********Switch Courses************/
+#modalAvailableCoursesPage
+{
+    display: none;
+    position: fixed; /*previous:absolute*/
+    width: 100%;
+    height: 190%;   /*To change modal div height*/
+    top: 0px; left: 0px;
+    
+}
+.modalAvailableCoursesBackground
+{
+   
+  	filter: Alpha(Opacity=10); 
+    opacity: 0.9;
+    -moz-opacity:0.9; 
+    width: 100%; 
+    height: 100%; 
+    background-color: #999999;
+    position: fixed; /*previous:absolute*/
+    z-index: 500;
+    top: 0px; left: 0px;
+    
+}
+.modalAvailableCoursesContainer
+{
+    position: absolute;
+    width: 300px;
+    left: 33%;	/*Left Position of modal window*/
+    top: 23%;	/*Top Position of modal window*/
+    z-index: 750;
+    
+}
+.modalAvailableCourses
+{
+    background-color: white;
+    border:1px solid #7A7A7A; 
+    position: relative;
+    top: -50px;
+    left: 100px;
+    z-index: 1000;
+    width: 400px;
+    height: 300px;
+    padding: 0px;
+}
+.modalAvailableCoursesTop
+{
+    width: 400px;
+    height:25px;
+    background-color: #DDDDDD;/*#000099;*/
+    border-bottom: 1px solid #B7B7B7;
+    color: #7A7A7A;
+    
+}
+.modalAvailableCoursesTop a, .modalAvailableCoursesTop a:visited
+{
+    color: #7A7A7A;
+}
+.modalAvailableCoursesBody
+{
+    padding-left: 0px;
+    padding-top: 5px;
+    
+}
+
+/***********Switch Courses************/
+/************Exam Schedule Check modal begins**************/
+#modalExamCheckPage
+{
+    display: none;
+    position: fixed; /*previous:absolute*/
+    width: 100%;
+    height: 190%;   /*To change modal div height*/
+    top: 0px; left: 0px;
+    
+}
+.modalExamCheckBackground
+{
+   
+  	filter: Alpha(Opacity=10); 
+    opacity: 0.9;
+    -moz-opacity:0.9; 
+    width: 100%; 
+    height: 100%; 
+    background-color: #999999;
+    position: fixed; /*previous:absolute*/
+    z-index: 500;
+    top: 0px; left: 0px;
+    
+}
+.modalExamCheckContainer
+{
+    position: absolute;
+    width: 300px;
+    left: 33%;	/*Left Position of modal window*/
+    top: 23%;	/*Top Position of modal window*/
+    z-index: 750;
+    
+}
+.modalExamCheck
+{
+    background-color: white;
+    border:1px solid #447AA1; 
+    position: relative;
+    top: -50px;
+    left: 100px;
+    z-index: 1000;
+    width: 400px;
+    height: 300px;
+    padding: 0px;
+}
+.modalExamCheckTop
+{
+    width: 400px;
+    height:25px;
+    background-color: #B7B7B7;/*#000099;*/
+    color: #7A7A7A;
+    
+}
+.modalExamCheckTop a, .modalExamCheckTop a:visited
+{
+    color: #7A7A7A;
+}
+.modalExamCheckBody
+{
+    padding-left: 0px;
+    padding-top: 5px;
+    
+}
+
+/************Exam Schedule Check modal Ends**************/
+
+/************Upload Student Info  begins**************/
+#modalUploadStudInfoPage
+{
+    display: none;
+    position: fixed; /*previous:absolute*/
+    width: 100%;
+    height: 190%;   /*To change modal div height*/
+    top: 0px; left: 0px;
+    
+}
+.modalUploadStudInfoBackground
+{
+   
+  	filter: Alpha(Opacity=10); 
+    opacity: 0.9;
+    -moz-opacity:0.9; 
+    width: 100%; 
+    height: 100%; 
+    background-color: #999999;
+    position: fixed; /*previous:absolute*/
+    z-index: 500;
+    top: 0px; left: 0px;
+    
+}
+.modalUploadStudInfoContainer
+{
+    position: absolute;
+    width: 300px;
+    left: 33%;	/*Left Position of modal window*/
+    top: 23%;	/*Top Position of modal window*/
+    z-index: 750;
+    
+}
+.modalUploadStudInfo
+{
+    background-color: white;
+    border:1px solid #B7B7B7; 
+    position: relative;
+    top: -50px;
+    left: 100px;
+    z-index: 1000;
+    width: 400px;
+    height: 300px;
+    padding: 0px;
+}
+.modalUploadStudInfoTop
+{
+    width: 400px;
+    height:25px;
+    background-color: #DDDDDD;/*#000099;*/
+    color: #7A7A7A;
+    
+}
+.modalUploadStudInfoTop a, .modalUploadStudInfoTop a:visited
+{
+    color: #7A7A7A;
+}
+.modalUploadStudInfoBody
+{
+    padding-left: 0px;
+    padding-top: 5px;
+    
+}
+
+/************Upload Student Info Ends**************/
+
+/************Change Student Info  begins**************/
+#modalChangeStudInfoPage
+{
+    display: none;
+    position: fixed; /*previous:absolute*/
+    width: 100%;
+    height: 190%;   /*To change modal div height*/
+    top: 0px; left: 0px;
+    
+}
+.modalChangeStudInfoBackground
+{
+   
+  	filter: Alpha(Opacity=10); 
+    opacity: 0.9;
+    -moz-opacity:0.9; 
+    width: 100%; 
+    height: 100%; 
+    background-color: #999999;
+    position: fixed; /*previous:absolute*/
+    z-index: 500;
+    top: 0px; left: 0px;
+    
+}
+.modalChangeStudInfoContainer
+{
+    position: absolute;
+    width: 700px;
+    left: 33%;	/*Left Position of modal window*/
+    top: 23%;	/*Top Position of modal window*/
+    z-index: 750;
+    
+}
+.modalChangeStudInfo
+{
+    background-color: white;
+    border:1px solid #B7B7B7; 
+    position: relative;
+    top: -50px;
+    left: 100px;
+    z-index: 1000;
+    width: 880px;
+    height: 300px;
+    padding: 0px;
+}
+.modalChangeStudInfoTop
+{
+    width: 880px;
+    height:25px;
+    background-color: #DDDDDD;/*#000099;*/
+    color: #7A7A7A;
+    
+}
+.modalChangeStudInfoTop a, .modalChangeStudInfoTop a:visited
+{
+    color: #7A7A7A;
+}
+.modalChangeStudInfoBody
+{
+    padding-left: 0px;
+    padding-top: 5px;
+    
+}
+
+/************Upload Student Info Ends**************/
+
+
+
+/************Exam Schedule Check modal begins**************/
+#modalExamCheckPage
+{
+    display: none;
+    position: fixed; /*previous:absolute*/
+    width: 100%;
+    height: 190%;   /*To change modal div height*/
+    top: 0px; left: 0px;
+    
+}
+.modalExamCheckBackground
+{
+   
+  	filter: Alpha(Opacity=10); 
+    opacity: 0.9;
+    -moz-opacity:0.9; 
+    width: 100%; 
+    height: 100%; 
+    background-color: #999999;
+    position: fixed; /*previous:absolute*/
+    z-index: 500;
+    top: 0px; left: 0px;
+    
+}
+.modalExamCheckContainer
+{
+    position: absolute;
+    width: 300px;
+    left: 33%;	/*Left Position of modal window*/
+    top: 23%;	/*Top Position of modal window*/
+    z-index: 750;
+    
+}
+.modalExamCheck
+{
+    background-color: white;
+    border:1px solid #B7B7B7; 
+    position: relative;
+    top: -50px;
+    left: 100px;
+    z-index: 1000;
+    width: 400px;
+    height: 300px;
+    padding: 0px;
+}
+.modalExamCheckTop
+{
+    width: 400px;
+    height:25px;
+    background-color: #DDDDDD;/*#000099;*/
+    color: #7A7A7A;
+    
+}
+.modalExamCheckTop a, .modalExamCheckTop a:visited
+{
+    color: #7A7A7A;
+}
+.modalExamCheckBody
+{
+    padding-left: 0px;
+    padding-top: 5px;
+    
+}
+
+/************Exam Schedule Check modal Ends**************/
+
+/************Upload Student Info  begins**************/
+#modalUploadStudInfoPage
+{
+    display: none;
+    position: fixed; /*previous:absolute*/
+    width: 100%;
+    height: 190%;   /*To change modal div height*/
+    top: 0px; left: 0px;
+    
+}
+.modalUploadStudInfoBackground
+{
+   
+  	filter: Alpha(Opacity=10); 
+    opacity: 0.9;
+    -moz-opacity:0.9; 
+    width: 100%; 
+    height: 100%; 
+    background-color: #999999;
+    position: fixed; /*previous:absolute*/
+    z-index: 500;
+    top: 0px; left: 0px;
+    
+}
+.modalUploadStudInfoContainer
+{
+    position: absolute;
+    width: 300px;
+    left: 33%;	/*Left Position of modal window*/
+    top: 23%;	/*Top Position of modal window*/
+    z-index: 750;
+    
+}
+.modalUploadStudInfo
+{
+    background-color: white;
+    border:1px solid #B7B7B7; 
+    position: relative;
+    top: -50px;
+    left: 100px;
+    z-index: 1000;
+    width: 400px;
+    height: 300px;
+    padding: 0px;
+}
+.modalUploadStudInfoTop
+{
+    width: 400px;
+    height:25px;
+    background-color: #DDDDDD;/*#000099;*/
+    color: #7A7A7A;
+    
+}
+.modalUploadStudInfoTop a, .modalUploadStudInfoTop a:visited
+{
+    color: #7A7A7A;
+}
+.modalUploadStudInfoBody
+{
+    padding-left: 0px;
+    padding-top: 5px;
+    
+}
+
+/************Upload Student Info Ends**************/
+
+
+#modalCreateCoursePage {
+	display: none;
+	position: fixed; /*previous:absolute*/
+	width: 98%;
+	height: 170%; /*To change modal div height*/
+	top: 0px;
+	left: 0px;
+}
+
+.modalCreateCourseContainer {
+	position: absolute;
+	width: 400px;
+	left: 32%; /*Left Position of modal window*/
+	top: 24%; /*Top Position of modal window*/
+	z-index: 750;
+}
+
+.modalCreateCommonBackground {
+	filter: Alpha(Opacity = 10);
+	opacity: 0.9;
+	-moz-opacity: 0.9;
+	width: 100%;
+	height: 100%;
+	background-color: #999999;
+	position: fixed; /*previous:absolute*/
+	z-index: 500;
+	top: 0px;
+	left: 0px;
+}
+
+.modalCreateCourse {
+	background-color: white;
+	border: 1px solid #B7B7B7;
+	position: relative;
+	top: -50px;
+	left: 100px;
+	z-index: 1000;
+	width: 340px;
+	height: 170px;
+	padding: 0px;
+}
+
+.modalCreateCourseTop {
+	width: 340px;
+	height: 25px;
+	background-color: #DDDDDD;/*#6b95b4; /*#000099;*/
+	border-bottom: 1px solid #B7B7B7;
+	color: #7A7A7A;
+}
+
+.modalCreateCourseTop a,.modalCreateCourseTop a:visited {
+	color: #7A7A7A;
+}
+
+.modalCreateCourseBody {
+	padding-left: 0px;
+	padding-top: 0px;
+}
+/**************************** ******************************/
+#modalCreateModulePage {
+	display: none;
+	position: fixed; /*previous:absolute*/
+	width: 90%;
+	height: 170%; /*To change modal div height*/
+	top: 0px;
+	left: 0px;
+}
+
+.modalCreateModuleContainer {
+	position: absolute;
+	width: 400px;
+	left: 32%; /*Left Position of modal window*/
+	top: 24%; /*Top Position of modal window*/
+	z-index: 750;
+}
+
+.modalCreateModule {
+	background-color: white;
+	border: 2px solid #B7B7B7;
+	position: relative;
+	top: -50px;
+	left: 100px;
+	z-index: 1000;
+	width: 325px;
+	height: 140px;
+	padding: 0px;
+}
+
+.modalCreateModuleTop {
+	width: 325px;
+	height: 25px;
+	background-color: #DDDDDD;; /*#000099;*/
+	border-bottom: 1px solid #B7B7B7;
+	color: #7A7A7A;
+}
+
+.modalCreateModuleTop a,.modalCreateModuleTop a:visited {
+	color: black;
+}
+
+.modalCreateModuleBody {
+	padding-left: 0px;
+	padding-top: 0px;
+}
+/**************************** ******************************/
+
+/************CourseEligibility div properties starts**************/
+#modalCourseEligibilityPage {
+	display: none;
+	position: fixed; /*previous:absolute*/
+	width: 100%;
+	height: 190%; /*To change modal div height*/
+	top: 0px;
+	left: 0px;
+}
+
+.modalCourseEligibilityBackground {
+	filter: Alpha(Opacity = 90);
+	-moz-opacity: 0.5;
+	opacity: 0.5;
+	width: 100%;
+	height: 100%;
+	background-color: #999999;
+	position: fixed; /*previous:absolute*/
+	z-index: 500;
+	top: 0px;
+	left: 0px;
+}
+
+.modalCourseEligibilityContainer {
+	position: absolute;
+	width: 300px;
+	left: 35%;
+	top: 15%;
+	z-index: 750;
+}
+
+.modalCourseEligibility {
+	background-color: white;
+	border: 1px solid #B7B7B7;
+	position: relative;
+	top: -50px;
+	left: -130px;
+	z-index: 1000;
+	width: 600px;
+	height: 300px;
+	padding: 0px;
+}
+
+.modalCourseEligibilityTop {
+	width: 600px;
+	height: 25px;
+	background-color: #DDDDDD; /*#000099;*/
+	border-bottom: 1px solid #B7B7B7;
+	color: #7A7A7A;
+}
+
+.modalCourseEligibilityTop a,.modalCourseEligibilityTop a:visited {
+	color: #7A7A7A;
+}
+
+.modalCourseEligibilityBody {
+	padding-left: 0px;
+	padding-top: 5px;
+}

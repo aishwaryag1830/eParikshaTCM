@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ExamSchedules" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="NoPages" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="c6930882-750b-45e9-a7bd-bf59dd93563e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="37"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ePariksha PostgreSql Adapter"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="ReportTitleHeader" mode="Opaque" backcolor="#E0DFE3" hTextAlign="Left" hImageAlign="Left" fontName="Arial" fontSize="14" pdfFontName="Arial.ttf" isPdfEmbedded="true">
+		<box leftPadding="2"/>
+	</style>
+	<style name="pageHeader" mode="Opaque" hTextAlign="Left" hImageAlign="Left"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#E0DFE3" hTextAlign="Center" hImageAlign="Center" vTextAlign="Middle" vImageAlign="Middle" fontName="Arial" fontSize="10" pdfFontName="Arial.ttf" isPdfEmbedded="true">
+		<box leftPadding="4">
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFFFFF" fill="Solid" hTextAlign="Left" hImageAlign="Left" vTextAlign="Middle" vImageAlign="Middle" isBlankWhenNull="true" fontName="Arial" fontSize="10" isBold="true" pdfFontName="ArialBD.ttf" isPdfEmbedded="true">
+		<box leftPadding="4">
+			<pen lineWidth="0.0" lineColor="#000000"/>
+			<topPen lineWidth="0.0"/>
+			<leftPen lineWidth="0.0"/>
+			<bottomPen lineWidth="0.0"/>
+			<rightPen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF" hTextAlign="Left" hImageAlign="Left" vTextAlign="Middle" vImageAlign="Middle" isBlankWhenNull="true" fontName="Arial" fontSize="10" pdfFontName="Arial.ttf" isPdfEmbedded="true">
+		<box leftPadding="4"/>
+	</style>
+	<style name="SummaryHeader" mode="Opaque" fill="Solid" markup="none" isBlankWhenNull="false" fontName="Arial" fontSize="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="ArialBD.ttf" isPdfEmbedded="true"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\trial\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="plsql">
+		<![CDATA[SELECT
+TO_CHAR(exam_Date, 'DD-MM-YYYY') AS examDate,
+(SELECT module_Name
+ FROM ePariksha_Modules
+ WHERE finalExamScheduleTable.exam_Module_Id = ePariksha_Modules.module_Id
+) AS moduleName,
+exam_Is_Time_Bound,
+exam_Time_Duration,
+exam_No_Of_Ques,
+(SELECT COUNT(exam_schedule_Id)
+ FROM ePariksha_Exam_Schedule tempSchedule
+ WHERE
+	TO_CHAR(tempSchedule.exam_date, 'DD-MM-YYYY') = TO_CHAR(finalExamScheduleTable.exam_date, 'DD-MM-YYYY')
+ AND
+	TO_CHAR(tempSchedule.exam_date, 'DD-MM-YYYY') = (SELECT DISTINCT TO_CHAR(ePariksha_Results.result_Exam_Date, 'DD-MM-YYYY')
+ 																								FROM ePariksha_Results
+ 																								WHERE
+																									TO_CHAR(ePariksha_Results.result_Exam_Date, 'DD-MM-YYYY') = TO_CHAR(tempSchedule.exam_Date, 'DD-MM-YYYY')
+																							   )
+) AS totalExamsConducted
+FROM ePariksha_Exam_Schedule finalExamScheduleTable 
+ORDER BY exam_Date]]>
+	</queryString>
+	<field name="examDate" class="java.lang.String"/>
+	<field name="moduleName" class="java.lang.String"/>
+	<field name="exam_Is_Time_Bound" class="java.lang.Boolean"/>
+	<field name="exam_Time_Duration" class="java.lang.Integer"/>
+	<field name="exam_No_Of_Ques" class="java.lang.Integer"/>
+	<field name="totalExamsConducted" class="java.lang.Integer"/>
+	<variable name="serialNumber" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{serialNumber}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<variable name="totalExamSchedules" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{COLUMN_COUNT}]]></variableExpression>
+	</variable>
+	<variable name="totalExamsConducted" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[( $V{ExamDateGroup_COUNT}==1? $F{totalExamsConducted} : new Integer(0) )]]></variableExpression>
+	</variable>
+	<group name="ExamDateGroup" keepTogether="true">
+		<groupExpression><![CDATA[$F{examDate}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="180" splitType="Immediate">
+			<staticText>
+				<reportElement style="ReportTitleHeader" x="3" y="130" width="302" height="18" backcolor="#CCCCCC" uuid="970c4e4e-908a-4317-88ef-c64cd3d1f1c5"/>
+				<textElement>
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Exam Schedules]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="3" y="160" width="136" height="20" uuid="58a3ce0f-5fd9-4785-a908-253186bbc15c"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement style="table_TD" x="39" y="160" width="100" height="20" uuid="275e5549-0ba1-4dbf-9fe6-193ae0bb44dc"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="305" y="12" width="221" height="76" uuid="d984f1c7-6afa-492d-aa7a-90a01d1c09a6"/>
+				<imageExpression><![CDATA["eParikshaLogo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="361" y="90" width="165" height="21" uuid="ebdeb9e8-f2b6-4b41-86bd-bc946694895d"/>
+				<textElement>
+					<font fontName="Arial" size="16" isBold="true" pdfFontName="Arial.ttf" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ePariksha Reports]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="25" splitType="Stretch">
+			<printWhenExpression><![CDATA[$V{PAGE_NUMBER}.intValue()==1?Boolean.FALSE:Boolean.TRUE]]></printWhenExpression>
+			<staticText>
+				<reportElement x="8" y="2" width="77" height="12" forecolor="#CCCCCC" uuid="95cb3d21-ab5f-442a-8e30-0baad665db4b"/>
+				<textElement>
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Exam Schedules]]></text>
+			</staticText>
+			<line>
+				<reportElement x="6" y="14" width="767" height="1" forecolor="#CCCCCC" uuid="205e0b5f-b00e-4d28-97b7-b162135fd6ef"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement key="sno" style="table_TH" x="3" y="4" width="36" height="17" uuid="dce6a739-15f7-4b08-8949-ee28783f28ed"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[S.no.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TH" x="39" y="4" width="79" height="17" uuid="1cb61d58-855c-4eb4-8f69-be73eb169bf0"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Exam Dates]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TH" x="204" y="4" width="299" height="17" uuid="2301b121-3a91-4dc1-bbee-f8a8a320d673"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Module Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TH" x="503" y="4" width="107" height="17" uuid="e5ed14f6-3313-4ec0-aadf-995e91726af9"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Exam Duration (Mins.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TH" x="610" y="4" width="80" height="17" uuid="5d218544-07b9-4fe6-8f97-7dfdb219f806"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Exam Questions]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TH" x="116" y="4" width="88" height="17" uuid="fc811e29-57e3-4a54-ab0d-704f6f8a2203"/>
+				<textElement textAlignment="Left">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Exams Conducted]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement style="table_TD" x="3" y="2" width="36" height="20" uuid="064059b8-9816-4c94-9a9b-8f70d603af4c">
+					<printWhenExpression><![CDATA[new Boolean($V{ExamDateGroup_COUNT}==1)]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[new Integer($V{serialNumber})+"."]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="table_TD" x="39" y="1" width="79" height="20" uuid="e2084a99-9c4d-4af0-a066-cb8c19f2c489">
+					<printWhenExpression><![CDATA[new Boolean($V{ExamDateGroup_COUNT}==1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{examDate}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="table_TD" x="503" y="0" width="107" height="20" uuid="3eca0868-5eab-46cf-b125-92c7b1a2c690"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[( Boolean.valueOf($F{exam_Is_Time_Bound})==Boolean.TRUE ? $F{exam_Time_Duration}.toString() : "*N/A" )]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="table_TD" x="206" y="1" width="297" height="20" uuid="f891faea-6b28-4353-a12a-eb38e382e466"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{moduleName}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="table_TD" x="610" y="0" width="79" height="20" uuid="57d583a7-523d-4c9f-8703-eb9ee06d5b79"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{exam_No_Of_Ques}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement style="table_TD" x="118" y="2" width="88" height="20" uuid="a5b10d8b-708c-44b7-ab3e-66d6203cd3d5">
+					<printWhenExpression><![CDATA[new Boolean($V{ExamDateGroup_COUNT}==1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{totalExamsConducted}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="21" y="2" width="185" height="20" uuid="1a2d6c2c-0568-4577-8746-20c5026895fc"/>
+				<text><![CDATA[*N/A: Exam scheduled without duration.]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="686" y="10" width="56" height="17" forecolor="#CCCCCC" uuid="6d10ec56-9247-48b2-bbc8-fe04f6ae7c15"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="742" y="10" width="42" height="17" forecolor="#CCCCCC" uuid="9452b42f-e70f-425f-a0d2-1d4f853430ea"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="8" y="7" width="765" height="1" forecolor="#CCCCCC" uuid="4492eed9-21a4-4f54-beaa-2e144e2bf12c"/>
+			</line>
+			<staticText>
+				<reportElement x="10" y="8" width="75" height="12" forecolor="#CCCCCC" uuid="332f6647-b3a5-40dd-8777-9b707f84966c"/>
+				<textElement>
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Exam Schedules]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="176" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="8" y="22" width="297" height="109" forecolor="#CCCCCC" uuid="96f18c7e-4da7-44ed-9fc6-85f8f9ce739a"/>
+			</rectangle>
+			<staticText>
+				<reportElement style="SummaryHeader" x="21" y="12" width="64" height="20" uuid="33db7744-f79a-4066-8a4e-ea5977e00263"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Summary]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="table_TD" x="156" y="60" width="105" height="20" uuid="f206da79-9621-4cc6-b253-65c8e5fd613b"/>
+				<textFieldExpression><![CDATA[$V{totalExamSchedules}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="table_CH" x="22" y="60" width="116" height="20" uuid="eeccbc3f-5e18-4a44-987c-01a948e31b67"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Exam Schedules:]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="table_TD" x="155" y="80" width="106" height="20" uuid="ade91171-467f-406f-8258-7b73b5312e0b"/>
+				<textFieldExpression><![CDATA[$V{totalExamsConducted}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="table_CH" x="23" y="80" width="116" height="20" uuid="6a4225ab-3695-4a47-85fa-cc1c14b88b39"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Exam Conducted:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
